@@ -1,14 +1,18 @@
-import type { Size } from "@/seed/seed"
+
+import { Size } from '@/interfaces'
 import clsx from "clsx"
 
 interface Props {
-  selectedSize: Size,
+  selectedSize?: Size,
   sizes: Size[]
+  error: boolean
+
+  onSelectedSize: (size: Size) => void
 }
 
-export const SizeSelector = ({ selectedSize, sizes }: Props) => {
+export const SizeSelector = ({ selectedSize, sizes, error, onSelectedSize }: Props) => {
   return (
-    <div className="my-2">
+    <div className="mb-2">
       <h3 className="font-bold mb-2">Tallas disponibles</h3>
 
       <div className="flex">
@@ -16,11 +20,13 @@ export const SizeSelector = ({ selectedSize, sizes }: Props) => {
           sizes.map(size => (
             <button
               key={size}
+              onClick={() => onSelectedSize(size)}
               className={
                 clsx(
-                  "mx-2 hover:underline text-lg",
+                  "mx-2 hover:underline text-lg transition-all",
                   {
-                    "underline": size === selectedSize
+                    "underline": size === selectedSize,
+                    "text-red-500": error
                   }
                 )
               }

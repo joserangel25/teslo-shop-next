@@ -3,7 +3,7 @@ export const revalidate = 604800 // 7 días
 import { Suspense } from 'react';
 import { notFound } from "next/navigation";
 import { getProductBySlug } from "@/actions";
-import { ProductMobileSlideshow, ProductSlideshow, QuantitySelector, SizeSelector, StockLabel, StockServerLabel } from "@/components";
+import { AddToCart, ProductMobileSlideshow, ProductSlideshow, StockLabel, StockServerLabel } from "@/components";
 import { fontTitle } from "@/config";
 import { ResolvingMetadata, Metadata } from "next";
 // import { initialData } from "@/seed/seed";
@@ -81,11 +81,9 @@ export default async function ProductPage({ params: { slug } }: Props) {
 
         <p className="text-lg mb-5">$ {product.price}</p>
 
-        {/* Selecto de tallas */}
-        <SizeSelector sizes={product.sizes} selectedSize="S" />
-        {/* Selector de cantidad */}
-        <QuantitySelector quantity={2} />
-        <button className="btn-primary my-5">Agregar</button>
+        <AddToCart product={product} />
+
+
         {/* Description */}
         <h3 className="font-bold text-sm">Descripción</h3>
         <p className="font-ligth">{product.description}</p>
