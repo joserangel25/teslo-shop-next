@@ -3,7 +3,7 @@ export const MENU_OPTIONS = ['perfil', 'ordenes', 'ingresar', 'salir']
 export const MENU_ITEMS_CLIENTS = [
   {
     label: 'perfil',
-    href: '/',
+    href: '/profile',
     // icon: <IoPersonOutlin />
   },
   {
@@ -11,16 +11,16 @@ export const MENU_ITEMS_CLIENTS = [
     href: '/',
     // icon: <IoPersonOutlin />
   },
-  {
-    label: 'ingresar',
-    href: '/',
-    // icon: <IoPersonOutlin />
-  },
-  {
-    label: 'salir',
-    href: '/',
-    // icon: <IoPersonOutlin />
-  }
+  // {
+  //   label: 'ingresar',
+  //   href: '/auth/login',
+  //   // icon: <IoPersonOutlin />
+  // },
+  // {
+  //   label: 'salir',
+  //   href: '/',
+  //   // icon: <IoPersonOutlin />
+  // }
 ]
 
 export const MENU_ITEMS_ADMIN = [

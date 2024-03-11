@@ -1,14 +1,30 @@
 'use client'
-import { MENU_ITEMS_ADMIN, MENU_ITEMS_CLIENTS } from '@/constants'
 
+import clsx from 'clsx'
+import { useSession } from 'next-auth/react'
 import { IoCloseOutline, IoSearchOutline } from 'react-icons/io5'
 import { SidebarMenuItem } from './SidebarMenuItem'
 import { useUIStore } from '@/store'
-import clsx from 'clsx'
+import { MENU_ITEMS_ADMIN, MENU_ITEMS_CLIENTS } from '@/constants'
+import { logOutSession } from '@/actions'
+import { useEffect } from 'react'
+import { IconMenuItem } from './IconMenuItem'
+import { SidebarMenuAdmin } from './SidebarMenuAdmin'
 
 export const Sidebar = () => {
   const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen)
   const closeSideMenu = useUIStore((state) => state.closeSideMenu)
+  const { data: session } = useSession()
+
+
+  const isAuthenticated = !!session?.user
+  const isAdmin = session?.user.role === 'admin'
+
+  // useEffect(() => {
+  //   console.log({ session })
+  //   console.log({ isAuthenticated })
+  // }, [isAuthenticated, session])
+
   return (
     <>
       <div className=''>
@@ -72,24 +88,40 @@ export const Sidebar = () => {
 
           <nav className='mt-10 text-slate-600'>
             {
-              MENU_ITEMS_CLIENTS.map(menu => (
+              isAuthenticated ? (
+                <>
+                  {
+                    MENU_ITEMS_CLIENTS.map(menu => (
+                      <SidebarMenuItem
+                        key={menu.label}
+                        onCloseSideMenu={closeSideMenu}
+                        {...menu}
+                      />
+                    ))
+                  }
+                  <button
+                    onClick={() => {
+                      logOutSession()
+                    }}
+                    className='flex w-full items-center hover:bg-gray-200 hover:text-blue-700 rounded transition-all py-2'
+                  >
+                    <IconMenuItem label={'salir'} />
+                    <span className="mx-3 text-lg capitalize">salir</span>
+                  </button>
+                </>
+              ) : (
                 <SidebarMenuItem
-                  key={menu.label}
-                  {...menu}
+                  onCloseSideMenu={closeSideMenu}
+                  label='ingresar'
+                  href='/auth/login'
                 />
-              ))
+              )
             }
-
-            <div className=' border border-b border-slate-300 rounded-md my-5'></div>
 
             {
-              MENU_ITEMS_ADMIN.map(menu => (
-                <SidebarMenuItem
-                  key={menu.label}
-                  {...menu}
-                />
-              ))
+              isAdmin && <SidebarMenuAdmin />
             }
+
           </nav>
         </aside>
       </div>
