@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs'
+import { type SeedCountry, countries } from './seed-contries';
 
 interface SeedProduct {
     description: string;
@@ -28,6 +29,7 @@ interface SeedData {
     categories: Category[];
     products: SeedProduct[];
     users: SeedUser[]
+    countries: SeedCountry[]
 }
 
 
@@ -834,5 +836,6 @@ export const initialData: SeedData = {
             password: bcrypt.hashSync('123456'),
             role: 'user'
         }
-    ]
+    ],
+    countries: countries
 }

@@ -5,16 +5,22 @@ async function main() {
   if (process.env.NODE_ENV === 'production') return;
 
   await Promise.all([
-    prisma.product.deleteMany(),
     prisma.productImage.deleteMany(),
+    prisma.product.deleteMany(),
     prisma.category.deleteMany(),
-    prisma.user.deleteMany()
+    prisma.user.deleteMany(),
+    prisma.country.deleteMany()
   ])
-  const { categories, products, users } = initialData
+  const { categories, products, users, countries } = initialData
 
   //Users
   await prisma.user.createMany({
     data: users
+  })
+
+  //Countries
+  await prisma.country.createMany({
+    data: countries
   })
 
   // Categorías

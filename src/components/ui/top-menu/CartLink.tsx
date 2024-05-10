@@ -13,7 +13,7 @@ export const CartLink = () => {
 
   const totalProducts = useCartStore(state => state.getTotalProducts())
   return (
-    <Link href={(totalProducts ? '/cart' : '/empty')}>
+    <Link href={((totalProducts && loaded) ? '/cart' : '/empty')}>
       <div className='relative'>
         {
           (loaded && totalProducts > 0) && (
