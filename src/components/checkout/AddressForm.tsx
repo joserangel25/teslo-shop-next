@@ -38,7 +38,6 @@ export const AddressForm = ({ countries, address }: Props) => {
   const router = useRouter()
 
   const { handleSubmit, register, formState: { isValid, errors } } = useForm<FormInputs>({
-    // TODO: leer de la vace de datos
     defaultValues: { ...address, rememberAddress: address ? true : false }
   })
 
@@ -49,8 +48,10 @@ export const AddressForm = ({ countries, address }: Props) => {
   }, [session])
 
   const onSubmitForm = async (data: FormInputs) => {
-    addAddressInStore(data)
+
     const { rememberAddress, ...rest } = data
+    addAddressInStore(rest)
+
     if (rememberAddress) {
       await setUserAddress(rest, userId)
     } else {

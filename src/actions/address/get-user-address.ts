@@ -8,7 +8,7 @@ export const getUserAddres = async (userId: string) => {
 
     if (!address) return null
 
-    const { countryId, address2, ...rest } = address
+    const { countryId, address2, userId: user, ...rest } = address
 
     return {
       ...rest,

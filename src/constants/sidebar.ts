@@ -8,7 +8,7 @@ export const MENU_ITEMS_CLIENTS = [
   },
   {
     label: 'ordenes',
-    href: '/',
+    href: '/orders',
     // icon: <IoPersonOutlin />
   },
   // {
@@ -30,7 +30,7 @@ export const MENU_ITEMS_ADMIN = [
   },
   {
     label: 'ordenes',
-    href: '/'
+    href: '/orders'
   },
   {
     label: 'usuarios',
