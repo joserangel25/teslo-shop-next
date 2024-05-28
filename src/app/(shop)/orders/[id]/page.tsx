@@ -1,6 +1,6 @@
 
 import { redirect } from 'next/navigation';
-import { ItemCart, LabelPaidOrder, Summary, Title } from "@/components";
+import { ItemCart, LabelPaidOrder, PaypalButton, Summary, Title } from "@/components";
 
 import { getOrderById } from '@/actions';
 
@@ -52,6 +52,17 @@ export default async function OrderPage({ params: { id: orderId } }: Props) {
               tax={order!.tax}
               totalProducts={order!.itemsInOrder}
             />
+
+            {
+              !order?.isPaid && (
+                <div className='mt-3'>
+                  <PaypalButton
+                    orderId={order!.id}
+                    amount={order!.total}
+                  />
+                </div>
+              )
+            }
           </div>
 
         </div>

@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
@@ -9,15 +10,12 @@ import { useCartStore } from '@/store'
 
 export const ProductsInCart = () => {
   const pathName = usePathname()
-  const router = useRouter()
+
   const productsInCart = useCartStore(state => state.cart)
   const updateQuantityProductInCart = useCartStore(state => state.updateQuantityProductInCart)
   const removeProductOfCart = useCartStore(state => state.removeProductOfCart)
   const isCheckout = pathName === '/checkout'
 
-  if (isCheckout && !productsInCart.length) {
-    router.replace('/')
-  }
 
   return (
     <div>

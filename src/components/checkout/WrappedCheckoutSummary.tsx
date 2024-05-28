@@ -1,7 +1,7 @@
 'use client'
 
 import clsx from 'clsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAddressStore, useCartStore } from '@/store'
 import { OrderSummary } from '../cart'
 import { AddressOrder } from './AddressOrder'
@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 export const WrappedCheckoutSummary = () => {
   const [errorMessage, setErrorMessage] = useState('')
   const [isSendingOrder, setIsSendingOrder] = useState(false)
+  const [orderSended, setOrderSended] = useState(false)
 
   const router = useRouter()
 
@@ -27,7 +28,6 @@ export const WrappedCheckoutSummary = () => {
       quantity: product.quantity,
       size: product.size
     }))
-
     const { ok, message, order } = await placeOrder(productToOrder, address)
 
     if (!ok) {
@@ -37,11 +37,31 @@ export const WrappedCheckoutSummary = () => {
     }
 
     setIsSendingOrder(false)
-    clearCart()
+    setOrderSended(true)
     router.replace(`/orders/${order!.id}`)
   }
+
+  useEffect(() => {
+
+    return () => {
+      if (orderSended) {
+        clearCart()
+
+      }
+    }
+  }, [orderSended, clearCart])
+
+  useEffect(() => {
+    if (!cart.length) {
+      router.replace('/')
+    }
+  }, [cart, router])
+
+
   return (
-    <div className="bg-white w-full md:w-[346px] rounded-xl shadow-xl p-7 self-start sticky top-5">
+    <div
+      className="bg-white flex flex-col items-center w-full md:w-[346px] rounded-xl shadow-xl p-7 self-start sticky top-5"
+    >
       {
         cart.length ? (
           <>
