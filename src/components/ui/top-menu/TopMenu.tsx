@@ -6,13 +6,13 @@ import { CartLink } from './CartLink'
 
 export const TopMenu = () => {
   return (
-    <nav className='flex px-5 justify-between items-center w-full'>
+    <nav className='flex px-5 lg:px-0 md:py-5 justify-between items-center w-full'>
       <div className=''>
         <Link
           href={'/'}
         >
-          <span className={`${fontTitle.className} antialiased font-bold`}>Teslo</span>
-          <span> | Shop</span>
+          <span className={`${fontTitle.className} antialiased font-bold md:text-3xl`}>Teslo</span>
+          <span className='md:text-xl'> | Shop</span>
         </Link>
       </div>
 

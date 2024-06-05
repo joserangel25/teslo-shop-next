@@ -3,13 +3,13 @@
 import clsx from 'clsx'
 import { useSession } from 'next-auth/react'
 import { IoCloseOutline, IoSearchOutline } from 'react-icons/io5'
-import { SidebarMenuItem } from './SidebarMenuItem'
-import { useUIStore } from '@/store'
-import { MENU_ITEMS_ADMIN, MENU_ITEMS_CLIENTS } from '@/constants'
-import { logOutSession } from '@/actions'
-import { useEffect } from 'react'
-import { IconMenuItem } from './IconMenuItem'
 import { SidebarMenuAdmin } from './SidebarMenuAdmin'
+import { SidebarMenuItem } from './SidebarMenuItem'
+import { IconMenuItem } from './IconMenuItem'
+
+import { logOutSession } from '@/actions'
+import { useUIStore } from '@/store'
+import { MENU_ITEMS_CLIENTS } from '@/constants'
 
 export const Sidebar = () => {
   const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen)

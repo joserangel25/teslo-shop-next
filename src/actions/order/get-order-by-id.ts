@@ -76,7 +76,7 @@ export const getOrderById = async (id: string) => {
       }
     }
 
-    if (order.userId !== session.user.id && session.user.role === 'admin') {
+    if (order.userId !== session.user.id && session.user.role !== 'admin') {
       return {
         ok: false,
         message: 'No tienes permisos para ver esta orden.'

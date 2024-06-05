@@ -51,7 +51,7 @@ export default async function ProductPage({ params: { slug } }: Props) {
         <div className="md:hidden">
           {/* Slideshow mobile */}
           <ProductMobileSlideshow
-            images={product.images}
+            images={product.images.map(img => img.url)}
             title={product.title}
           />
         </div>
@@ -59,7 +59,7 @@ export default async function ProductPage({ params: { slug } }: Props) {
         <div className="hidden md:block">
           {/* Slideshow  desktop*/}
           <ProductSlideshow
-            images={product.images}
+            images={product.images.map(img => img.url)}
             title={product.title}
           />
         </div>

@@ -23,9 +23,13 @@ export const getPaginatedProductsWithImages = async ({ page = 1, take = 12, gend
         images: {
           take: 2,
           select: {
-            url: true
+            url: true,
+            id: true
           }
         }
+      },
+      orderBy: {
+        title: 'desc'
       }
     })
 
@@ -40,7 +44,7 @@ export const getPaginatedProductsWithImages = async ({ page = 1, take = 12, gend
       totalPages,
       products: products.map(product => ({
         ...product,
-        images: product.images.map(image => image.url)
+        // images: product.images.map(image => image.url)
       }))
     }
   } catch (error) {

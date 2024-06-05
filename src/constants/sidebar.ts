@@ -26,14 +26,14 @@ export const MENU_ITEMS_CLIENTS = [
 export const MENU_ITEMS_ADMIN = [
   {
     label: 'productos',
-    href: '/'
+    href: '/admin/products'
   },
   {
     label: 'ordenes',
-    href: '/orders'
+    href: '/admin/orders'
   },
   {
     label: 'usuarios',
-    href: '/'
+    href: '/admin/users'
   },
 ]

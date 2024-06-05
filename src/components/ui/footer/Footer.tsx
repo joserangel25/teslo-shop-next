@@ -4,7 +4,7 @@ import React from 'react'
 
 export const Footer = () => {
   return (
-    <div className='flex gap-4 justify-center text-sm mb-10'>
+    <div className='flex flex-col items-center sm:flex-row gap-4 justify-center text-sm mb-10'>
       <Link href={'/'}>
         <span className={`${fontTitle.className} antialiased font-bold`}>Teslo</span>
         <span> | Shop</span>

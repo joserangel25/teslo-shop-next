@@ -1,9 +1,9 @@
 export const revalidate = 60
 
 import { notFound } from "next/navigation";
-import { Category, initialData } from "@/seed/seed";
 import { Title, ProductGrid, Pagination } from "@/components";
 import { getPaginatedProductsWithImages } from "@/actions";
+import { Category } from "@/seed/seed";
 
 interface Props {
   params: { gender: Category },
@@ -26,14 +26,13 @@ export default async function GenderPage({ params, searchParams }: Props) {
   if (!CATEGORIES.includes(gender)) {
     notFound()
   }
-  // const products = initialData.products.filter(product => product.gender === gender)
+
   const { products, currentPage, totalPages } = await getPaginatedProductsWithImages({ page, gender })
   return (
-    <div className="px-5">
+    <div className="px-5 lg:px-0">
       <Title
         title={params.gender}
         subtitle={`Productos en la categoría ${labels[params.gender]}`}
-      // className="capitalize"
       />
 
       <ProductGrid

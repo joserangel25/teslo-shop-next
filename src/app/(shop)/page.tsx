@@ -19,7 +19,7 @@ export default async function Home({ searchParams }: Props) {
     redirect('/?page=1')
   }
   return (
-    <div className="px-5">
+    <div className="px-5 lg:px-0">
       <Title
         title="Home"
         subtitle="Todos los productos."

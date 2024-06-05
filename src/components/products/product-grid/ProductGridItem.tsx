@@ -10,9 +10,9 @@ interface Props {
 }
 
 export const ProductGridItem = ({ product }: Props) => {
-  const [image, setImage] = useState(product.images[0])
+  const [image, setImage] = useState(product.images[0].url)
   const changeImage = (position: number) => {
-    setImage(product.images[position])
+    setImage(product.images[position].url)
   }
   return (
     <div className="rounded-md overflow-hidden fdae-in">
