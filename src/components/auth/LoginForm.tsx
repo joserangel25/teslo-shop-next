@@ -13,7 +13,6 @@ export const LoginForm = () => {
   const router = useRouter()
 
   useEffect(() => {
-    console.log(state)
     if (state === 'Success') {
       window.location.replace('/')
     }

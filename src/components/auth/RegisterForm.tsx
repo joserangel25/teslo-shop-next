@@ -67,7 +67,7 @@ export const RegisterForm = () => {
       />
 
       <button
-
+        type='submit'
         className="btn-primary">
         Ingresar
       </button>

@@ -34,7 +34,7 @@ export const TopMenu = () => {
       </div>
 
       <div className='flex items-center gap-2'>
-        <Link href={'/search'}>
+        <Link href={'/'}>
           <IoSearchOutline className='w-5 h-5' />
         </Link>
 

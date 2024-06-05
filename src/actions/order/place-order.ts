@@ -113,7 +113,6 @@ export const placeOrder = async (products: ProductToOrder[], address: Address) =
 
       // Validar si algún orderItem tiene un precio de $0, de ser así lanzar un error para que se revierta toda la transacción
       // 3. Crear dirección de orden
-      console.log(address)
       const { country, ...restAddress } = address
       await tx.orderAddress.create({
         data: {

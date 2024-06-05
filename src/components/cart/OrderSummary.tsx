@@ -19,7 +19,6 @@ export const OrderSummary = () => {
 
   useEffect(() => {
     if (loaded && !itemsInCart) {
-      console.log('no items')
       router.replace('/empty')
     }
   }, [itemsInCart, loaded, router])

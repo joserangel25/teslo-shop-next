@@ -1,5 +1,6 @@
 import { getOrderByUser } from '@/actions';
 import { Title } from '@/components';
+import { showMinimunIdOrder } from '@/utils';
 
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -46,7 +47,7 @@ export default async function OrdersPage() {
                   orders?.map(order => (
                     <tr key={order.id} className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
 
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{order.id}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{showMinimunIdOrder(order.id)}</td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap capitalize">
                         {order.OrderAddress?.firstName} {order.OrderAddress?.lastName}
                       </td>

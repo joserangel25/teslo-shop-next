@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation'
 
 export const WrappedCheckoutSummary = () => {
   const [errorMessage, setErrorMessage] = useState('')
+  const [loaded, setLoaded] = useState(false)
   const [isSendingOrder, setIsSendingOrder] = useState(false)
   const [orderSended, setOrderSended] = useState(false)
 
@@ -42,25 +43,29 @@ export const WrappedCheckoutSummary = () => {
   }
 
   useEffect(() => {
+    setLoaded(true)
+  }, [])
+
+
+  useEffect(() => {
 
     return () => {
       if (orderSended) {
         clearCart()
-
       }
     }
   }, [orderSended, clearCart])
 
   useEffect(() => {
-    if (!cart.length) {
+    if (!cart.length && loaded) {
       router.replace('/')
     }
-  }, [cart, router])
+  }, [cart, router, loaded])
 
 
   return (
     <div
-      className="bg-white flex flex-col items-center w-full md:w-[346px] rounded-xl shadow-xl p-7 self-start sticky top-5"
+      className="bg-white flex flex-col  w-full md:w-[346px] rounded-xl shadow-xl p-7 self-start sticky top-5"
     >
       {
         cart.length ? (
@@ -102,7 +107,10 @@ export const WrappedCheckoutSummary = () => {
             </button>
           </>
         ) : (
-          <Spinner />
+          <div className='self-center'>
+            <Spinner />
+
+          </div>
         )
       }
     </div>

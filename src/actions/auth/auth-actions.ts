@@ -36,7 +36,7 @@ export async function authenticate(prevState: string | undefined, formData: Form
 
 export const login = async ({ email, password }: { email: string, password: string }) => {
   try {
-    await signIn('credentials', { email, password })
+    await signIn('credentials', { email, password, redirect: false })
     return { ok: true }
   } catch (error) {
     console.log(error)

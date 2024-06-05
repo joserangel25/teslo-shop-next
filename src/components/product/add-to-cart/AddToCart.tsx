@@ -34,7 +34,7 @@ export const AddToCart = ({ product }: Props) => {
       title,
       size,
       quantity,
-      image: images[0]
+      image: images[0].url
     }
     addProductInCart(cartProduct)
     resetData()
